@@ -1,24 +1,23 @@
 export const SET_SELECTED_CATEGORY = "SET_SELECTED_CATEGORY";
 export const SET_CATEGORY_LIST = "SET_CATEGORY_LIST";
 export const SET_CAT_IMAGE_LIST = "SET_CAT_IMAGE_LIST";
+export const SET_MORE_CAT_IMAGE_LIST = "SET_MORE_CAT_IMAGE_LIST";
 
-export interface Category {
+export interface ICategory {
     id: string,
     name: string,
 }
-export interface CatImage {
+export interface ICatImage {
     height: number,
     id: string,
     url: string,
     width: number
 }
-
-export interface ShowCatState {
+export interface IShowCatState {
     selectedCategory: string,
-    categoryList: Category[];
-    CatImageList: CatImage[],
+    categoryList: ICategory[];
+    catImageList: ICatImage[],
 }
-
 
 interface setSelectedCategory {
     type: typeof SET_SELECTED_CATEGORY;
@@ -26,11 +25,15 @@ interface setSelectedCategory {
   }
 interface setCategoryList {
     type: typeof SET_CATEGORY_LIST;
-    payload: Category[];
+    payload: ICategory[];
   }
 interface setCatImageList {
     type: typeof SET_CAT_IMAGE_LIST;
-    payload: CatImage[];
+    payload: ICatImage[];
+  }
+interface setMoreCatImageList {
+    type: typeof SET_MORE_CAT_IMAGE_LIST;
+    payload: ICatImage[];
   }
   
-export type ShowCatActionType = setSelectedCategory | setCategoryList | setCatImageList;
+export type ShowCatActionType = setSelectedCategory | setCategoryList | setCatImageList|setMoreCatImageList;

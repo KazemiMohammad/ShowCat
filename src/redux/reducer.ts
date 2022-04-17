@@ -1,17 +1,18 @@
-import { ShowCatActionType, ShowCatState, SET_SELECTED_CATEGORY, SET_CATEGORY_LIST, SET_CAT_IMAGE_LIST } from "./types";
+import { ShowCatActionType, IShowCatState, SET_SELECTED_CATEGORY, SET_CATEGORY_LIST, SET_CAT_IMAGE_LIST, SET_MORE_CAT_IMAGE_LIST } from "./types";
 
-const initialState: ShowCatState={
-    selectedCategory : "",
+const initialState: IShowCatState = {
+    selectedCategory: "",
     categoryList: [],
-    CatImageList: []
+    catImageList: []
 }
 
-export const ShowCatReducer = (state = initialState, action: ShowCatActionType): ShowCatState => {
+export const ShowCatReducer = (state: IShowCatState = initialState, action: ShowCatActionType): IShowCatState => {
     switch (action.type) {
         case SET_SELECTED_CATEGORY:
             return {
                 ...state,
-                selectedCategory: action.payload
+                selectedCategory: action.payload,
+                catImageList:[]
             };
         case SET_CATEGORY_LIST:
             return {
@@ -21,7 +22,12 @@ export const ShowCatReducer = (state = initialState, action: ShowCatActionType):
         case SET_CAT_IMAGE_LIST:
             return {
                 ...state,
-                CatImageList: action.payload
+                catImageList: action.payload
+            };
+        case SET_MORE_CAT_IMAGE_LIST:
+            return {
+                ...state,
+                catImageList: [...state.catImageList, ...action.payload]
             };
         default:
             return state;
